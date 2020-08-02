@@ -3,7 +3,6 @@
     package="com.soundee.soundee">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    
 
     <application
         android:allowBackup="true"
@@ -12,24 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-        <activity
-            android:name=".GuideActivity"
-            android:label="@string/title_activity_guide">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <caegory android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 
