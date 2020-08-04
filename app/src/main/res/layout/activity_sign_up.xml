@@ -45,10 +45,10 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/border_gray_line_4"
             android:ems="10"
+            android:hint="soundee@gmail.com"
             android:inputType="textWebEmailAddress|textEmailAddress"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="Name"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +63,7 @@
             android:text="유효한 이메일 형식이 아닙니다."
             android:textColor="@color/colorRed"
             android:textSize="12dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_email"
             app:layout_constraintTop_toBottomOf="@+id/edt_signup_email" />
 
@@ -85,10 +86,10 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/border_gray_line_4"
             android:ems="10"
+            android:hint="이름"
             android:inputType="textPersonName|textEmailAddress"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="Name"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_email"
@@ -103,6 +104,7 @@
             android:text="20자 이내로 입력하세요."
             android:textColor="@color/colorRed"
             android:textSize="12dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_name"
             app:layout_constraintTop_toBottomOf="@+id/edt_signup_name" />
 
@@ -128,7 +130,6 @@
             android:inputType="textWebPassword"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="Name"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_name"
@@ -143,6 +144,7 @@
             android:text="영문, 숫자 조합 8자 이상을 입력해주세요."
             android:textColor="@color/colorRed"
             android:textSize="12dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_password"
             app:layout_constraintTop_toBottomOf="@+id/edt_signup_password" />
 
@@ -168,7 +170,6 @@
             android:inputType="textWebPassword"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="Name"
             android:textSize="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_password"
@@ -183,6 +184,7 @@
             android:text="비밀번호가 동일하지 않습니다."
             android:textColor="@color/colorRed"
             android:textSize="12dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="@+id/edt_signup_password_again"
             app:layout_constraintTop_toBottomOf="@+id/edt_signup_password_again" />
 

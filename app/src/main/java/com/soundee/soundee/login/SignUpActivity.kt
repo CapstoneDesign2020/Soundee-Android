@@ -1,18 +1,11 @@
 package com.soundee.soundee.login
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import android.text.TextWatcher
-
 import android.view.View
-import androidx.core.view.isVisible
 import com.soundee.soundee.R
 import com.soundee.soundee.util.CheckTextWatcher
 import kotlinx.android.synthetic.main.actionbar_all_gotoback.*
-import kotlinx.android.synthetic.main.activity_login.*
-
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.regex.Pattern
 
