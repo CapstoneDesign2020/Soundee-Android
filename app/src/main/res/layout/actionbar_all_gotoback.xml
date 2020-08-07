@@ -9,24 +9,27 @@
         android:id="@+id/txt_actionbar_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:text="TextView"
         android:textColor="@color/colorTextBlack"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_acrionbar_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/btn_acrionbar_back"
+        app:layout_constraintTop_toTopOf="@+id/btn_acrionbar_back" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:id="@+id/btn_acrionbar_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginBottom="18dp"
-        android:src="@color/colorAccent"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

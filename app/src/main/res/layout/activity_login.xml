@@ -76,7 +76,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/border_gray_line_4"
             android:ems="10"
-            android:inputType="textEmailSubject"
+            android:inputType="textPassword|textWebPassword"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
             android:text="password"
@@ -150,6 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="비밀번호를 잊어버리셨습니까?"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
