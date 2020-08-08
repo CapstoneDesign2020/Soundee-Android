@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
+import com.soundee.soundee.MainActivity
 import com.soundee.soundee.R
 import com.soundee.soundee.util.CheckTextWatcher
 import kotlinx.android.synthetic.main.actionbar_all_gotoback.*
@@ -29,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
 
         edt_login_email.addTextChangedListener(textWatcher)
         edt_login_password.addTextChangedListener(textWatcher)
+
+        btn_login_login.setOnClickListener {
+            val mainIntent = Intent(this,MainActivity::class.java)
+            startActivity(mainIntent)
+        }
 
         btn_login_signup.setOnClickListener {
             val intent = Intent(this,SignUpActivity::class.java)

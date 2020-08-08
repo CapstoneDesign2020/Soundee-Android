@@ -12,5 +12,8 @@
     <color name="colorTextBlack">#333333</color>
     <color name="colorRed">#F85951</color>
     <color name="colorButtonGray">#6A6A6A</color>
+    <color name="colorOrange">#f89650</color>
+    <color name="colorPurple">#361c32</color>
+
 
 </resources>
