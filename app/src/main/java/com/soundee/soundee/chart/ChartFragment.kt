@@ -1,5 +1,6 @@
 package com.soundee.soundee.chart
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.provider.ContactsContract
 import androidx.core.content.ContextCompat
@@ -9,7 +10,9 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.renderer.BarChartRenderer
 import com.soundee.soundee.R
+import com.soundee.soundee.util.RoundedBarChartRenderer
 import kotlinx.android.synthetic.main.fragment_chart.*
 
 class ChartFragment : Fragment(R.layout.fragment_chart){
@@ -62,11 +65,20 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
         leftYAxis.setDrawAxisLine(false)
         leftYAxis.setDrawLabels(false)
 
+        val roundedBarChartRenderer=RoundedBarChartRenderer(chart_bar_weekly,chart_bar_weekly.animator,chart_bar_weekly.viewPortHandler)
+        //val paint = roundedBarChartRenderer.paintRender
+
+
+
+        chart_bar_weekly.renderer=roundedBarChartRenderer
+
+
         chart_bar_weekly.legend.isEnabled=false
         chart_bar_weekly.description.isEnabled=false
+
     }
     private fun dummyChartListData() {
-        listData.add(BarEntry(0f, 130f))
+        listData.add(BarEntry(0f, 100f))
         listData.add(BarEntry(1f, 20f))
         listData.add(BarEntry(2f, 60f))
         listData.add(BarEntry(3f, 80f))
@@ -88,6 +100,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
         }
         dataSet.colors=listColor
         dataSet.setDrawValues(false)
+
 
         val barData=BarData(dataSet)
         barData.barWidth=0.3f
