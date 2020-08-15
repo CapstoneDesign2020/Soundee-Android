@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "829696922811",
+    "firebase_url": "https://soundee-3c838.firebaseio.com",
+    "project_id": "soundee-3c838",
+    "storage_bucket": "soundee-3c838.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829696922811:android:519be64ddbbf2deff4459e",
+        "android_client_info": {
+          "package_name": "com.soundee.soundee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829696922811-r9rj6djgbrs9als0gio2pbgj60jid3hk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.soundee.soundee",
+            "certificate_hash": "e3437bfc853e78216776e43c1b6525e379077493"
+          }
+        },
+        {
+          "client_id": "829696922811-d7c6itpjd9m1jf68ohnj2mo5udk9a8h3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCieR7mx2K5EKYO1W_GUE-BY4AQv1ATG7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829696922811-d7c6itpjd9m1jf68ohnj2mo5udk9a8h3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

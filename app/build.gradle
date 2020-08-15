@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -8,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.soundee.soundee"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -41,5 +42,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:1.0.0"
     //compileOnly 'com.google.android.wearable:wearable:2.5.0'
     implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
+
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
 }
