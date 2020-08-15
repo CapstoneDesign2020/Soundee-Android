@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#4AAC71</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#4AAC71</color>
 
     <color name="colorPointGreen">#4AAC71</color>
     <color name="colorBackgroundGreen">#EAEFEB</color>
@@ -14,6 +14,7 @@
     <color name="colorButtonGray">#6A6A6A</color>
     <color name="colorOrange">#f89650</color>
     <color name="colorPurple">#361c32</color>
+    <color name="colorChartGray">#818181</color>
 
 
 </resources>

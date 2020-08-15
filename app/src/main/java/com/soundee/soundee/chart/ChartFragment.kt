@@ -5,6 +5,7 @@ import android.provider.ContactsContract
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
@@ -72,8 +73,8 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
         listData.add(BarEntry(4f, 120f))
         listData.add(BarEntry(5f, 40f))
         listData.add(BarEntry(6f, 55f))
-
     }
+
     private fun drawBarChart(listData:ArrayList<BarEntry>){
         val dataSet=BarDataSet(listData,"")
 
@@ -97,25 +98,43 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
 
     private fun drawPieChart(){
         val pieDataSet=PieDataSet(dummyPieChartListData(),"")
+
         val listPieColor= ArrayList<Int>()
-        listPieColor.add(ContextCompat.getColor(context!!, R.color.colorOrange))
         listPieColor.add(ContextCompat.getColor(context!!, R.color.colorRed))
-        listPieColor.add(ContextCompat.getColor(context!!, R.color.colorPointGreen))
         listPieColor.add(ContextCompat.getColor(context!!, R.color.colorPurple))
+        listPieColor.add(ContextCompat.getColor(context!!, R.color.colorPointGreen))
+        listPieColor.add(ContextCompat.getColor(context!!, R.color.colorOrange))
+        listPieColor.add(ContextCompat.getColor(context!!, R.color.colorChartGray))
+        listPieColor.add(ContextCompat.getColor(context!!, R.color.colorChartGray))
+
+
 
         pieDataSet.colors=listPieColor
+        pieDataSet.setDrawValues(false)
+
+
         val pieData=PieData(pieDataSet)
         chart_pie_daily.data=pieData
+        chart_pie_daily.description.isEnabled=false
+
+        val pieLegend=chart_pie_daily.legend
+        pieLegend.form=Legend.LegendForm.CIRCLE
+        pieLegend.verticalAlignment=Legend.LegendVerticalAlignment.CENTER
+        pieLegend.horizontalAlignment=Legend.LegendHorizontalAlignment.RIGHT
+        pieLegend.orientation=Legend.LegendOrientation.VERTICAL
+
+        chart_pie_daily.setDrawSliceText(false)
         chart_pie_daily.animateXY(1000,1000)
         chart_pie_daily.invalidate()
     }
     private fun dummyPieChartListData()  : ArrayList<PieEntry>{
         val listPieData=ArrayList<PieEntry>()
-        listPieData.add(PieEntry(60f, "물건 떨어지는 소리"))
+        listPieData.add(PieEntry(25f, "물건 떨어지는 소리"))
         listPieData.add(PieEntry(20f, "물 소리"))
-        listPieData.add(PieEntry(30f, "아기 우는 소리"))
+        listPieData.add(PieEntry(10f, "아기 우는 소리"))
         listPieData.add(PieEntry(40f, "모터 소리"))
-
+        listPieData.add(PieEntry(0f, "유리깨지는 소리"))
+        listPieData.add(PieEntry(0f, "사이렌"))
 
         return listPieData
 
@@ -145,6 +164,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
         chart_line_monthly.description.isEnabled=false
         chart_line_monthly.data=LineData(lineDataSet)
     }
+
     private fun dummyLineChartListData()  : ArrayList<Entry>{
         val listLineData=ArrayList<Entry>()
 
