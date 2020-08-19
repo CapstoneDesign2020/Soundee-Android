@@ -154,14 +154,27 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
     }
     private fun drawLineChart(){
         val lineDataSet=LineDataSet(dummyLineChartListData(),"")
-        lineDataSet.color=ContextCompat.getColor(context!!, R.color.colorPointGreen)
+        lineDataSet.color=ContextCompat.getColor(context!!, R.color.colorChartMint)
+        lineDataSet.setDrawCircles(false)
+        lineDataSet.setDrawValues(false)
+        lineDataSet.lineWidth=5f
+        lineDataSet.circleRadius=10f
+        lineDataSet.mode=LineDataSet.Mode.CUBIC_BEZIER
+
+
 
         val xAxis = chart_line_monthly.xAxis
         xAxis.position=XAxis.XAxisPosition.BOTTOM
         xAxis.granularity=1f
-        //xAxis.labelCount=7
+        xAxis.labelCount=12
         xAxis.axisLineWidth=3f
-        xAxis.axisLineWidth=0f
+        //xAxis.axisLineWidth=0f
+        xAxis.gridColor=R.color.colorChartGray
+        xAxis.granularity=1f
+        xAxis.enableGridDashedLine(20f,10f,0f)
+        xAxis.gridLineWidth= 0.4f
+        xAxis.setDrawAxisLine(false)
+
 
         val rightYAxis = chart_line_monthly.axisRight
         rightYAxis.isEnabled = false
@@ -181,7 +194,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
     private fun dummyLineChartListData()  : ArrayList<Entry>{
         val listLineData=ArrayList<Entry>()
 
-            for (i in 0..20) {
+            for (i in 1..12) {
             var a = (Math.random() * 10).toFloat()
             listLineData.add(Entry(i.toFloat(), a))
         }
