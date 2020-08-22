@@ -2,11 +2,16 @@ package com.soundee.soundee.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.soundee.soundee.R
+import com.soundee.soundee.data.RepositoryImpl
 import com.soundee.soundee.util.CheckTextWatcher
 import kotlinx.android.synthetic.main.actionbar_all_gotoback.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.json.JSONObject
 import java.util.regex.Pattern
 
 class SignUpActivity : AppCompatActivity() {
@@ -29,6 +34,8 @@ class SignUpActivity : AppCompatActivity() {
 
         btn_signup_signup.setOnClickListener {
             moveFocus()
+            postSignUp()
+
 
             //통신으로 대체되어야 함.
             //val intent= Intent(this, LoginActivity::class.java)
@@ -107,6 +114,26 @@ class SignUpActivity : AppCompatActivity() {
         else if(txt_signup_check_password.visibility==View.VISIBLE|| edt_signup_password_again.text.isEmpty()){
             edt_signup_password_again.requestFocus()
         }
+    }
+    //통신
+    private fun postSignUp(){
+        val jsonObject =JSONObject()
+        jsonObject.put("email",edt_signup_email.text.toString())
+        jsonObject.put("password",edt_signup_password.text.toString())
+        jsonObject.put("name",edt_signup_name.text.toString())
+
+        val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
+
+        RepositoryImpl.postSignUp(gsonObject,{
+            if(it.status==200){
+                if(it.success){
+                    Log.e("요청 값",gsonObject.toString())
+                    Log.e("응답 값",it.toString())
+                }
+            }
+        },{
+
+        })
     }
 
 
