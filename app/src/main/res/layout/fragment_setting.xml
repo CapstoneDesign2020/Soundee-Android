@@ -70,7 +70,7 @@
             app:srcCompat="@drawable/img_user" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/txt_setting_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -83,15 +83,15 @@
             app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/txt_setting_user_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:includeFontPadding="false"
             android:text="yoooogiiiin@soundee.co.kr"
             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintStart_toStartOf="@+id/txt_setting_user_name"
+            app:layout_constraintTop_toBottomOf="@+id/txt_setting_user_name" />
 
         <ImageView
             android:id="@+id/btn_setting_fold_account"
@@ -115,7 +115,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/txt_setting_user_email"
             app:layout_constraintVertical_bias="1.0">
 
             <ImageView
@@ -137,10 +137,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_setting_logout" />
+                app:layout_constraintTop_toBottomOf="@+id/btn_setting_logout" />
 
             <TextView
-                android:id="@+id/txt_setting_logout"
+                android:id="@+id/btn_setting_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -151,14 +151,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txt_setting_delete_account"
+                android:id="@+id/btn_setting_delete_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="회원탈퇴"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txt_setting_logout"
+                app:layout_constraintStart_toStartOf="@+id/btn_setting_logout"
                 app:layout_constraintTop_toBottomOf="@+id/imageView7" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

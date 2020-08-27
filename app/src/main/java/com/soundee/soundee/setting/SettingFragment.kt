@@ -2,9 +2,17 @@ package com.soundee.soundee.setting
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import com.soundee.soundee.R
+import com.soundee.soundee.data.RepositoryImpl
+import com.soundee.soundee.data.remote.RemoteDataSource
+import com.soundee.soundee.db.SoundeeUserController
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_setting.*
+import org.json.JSONObject
 
 class SettingFragment : Fragment(R.layout.fragment_setting) {
     var a = false
@@ -13,32 +21,32 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         super.onActivityCreated(savedInstanceState)
 
         btn_setting_fold_account.setOnClickListener {
-            /*
-            btn_setting_fold_account.setImageDrawable(resources.getDrawable(R.drawable.btn_unfolded_details))
-            layout_setting_unfold_account.visibility= View.VISIBLE
-
-            if(btn_setting_fold_account.drawable==resources.getDrawable(R.drawable.btn_folded_details)){
-                btn_setting_fold_account.setImageDrawable(resources.getDrawable(R.drawable.btn_unfolded_details))
-                layout_setting_unfold_account.visibility= View.VISIBLE
-            }
-             */
-
-
 
             if (a) {
                 btn_setting_fold_account.isSelected = true
                 layout_setting_unfold_account.visibility = View.VISIBLE
-                a=false
+                a = false
             } else {
                 layout_setting_unfold_account.visibility = View.GONE
                 btn_setting_fold_account.isSelected = false
-                a=true
+                a = true
             }
-
-
+        }
+        btn_setting_delete_account.setOnClickListener {
+            deleteWithdrawUser()
         }
 
 
+    }
+
+    fun deleteWithdrawUser() {
+        RemoteDataSource.deleteUser(SoundeeUserController.getToken(context)!!, SoundeeUserController.getUserIdx(context),
+            {
+                SoundeeUserController.clearToken(context!!)
+                Toast.makeText(context, it.message, Toast.LENGTH_LONG)
+            },
+            {
+            })
     }
 
 }
