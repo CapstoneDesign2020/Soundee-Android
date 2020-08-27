@@ -1,5 +1,6 @@
 package com.soundee.soundee.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,6 +41,9 @@ class SignUpActivity : AppCompatActivity() {
             //통신으로 대체되어야 함.
             //val intent= Intent(this, LoginActivity::class.java)
             //startActivity(intent)
+        }
+        btn_acrionbar_back.setOnClickListener {
+            finish()
         }
 
 
@@ -129,6 +133,9 @@ class SignUpActivity : AppCompatActivity() {
                 if(it.success){
                     Log.e("요청 값",gsonObject.toString())
                     Log.e("응답 값",it.toString())
+
+                    val signUpIntent = Intent(this,LoginActivity::class.java)
+                    startActivity(signUpIntent)
                 }
             }
         },{
