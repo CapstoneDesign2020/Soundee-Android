@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -12,11 +13,13 @@ import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.renderer.BarChartRenderer
 import com.soundee.soundee.R
+import com.soundee.soundee.data.vo.RvSoundChart
 import com.soundee.soundee.util.RoundedBarChartRenderer
 import kotlinx.android.synthetic.main.fragment_chart.*
 
 class ChartFragment : Fragment(R.layout.fragment_chart){
     private val listData = ArrayList<BarEntry>()
+    private val dailyChartDetailsAdapter=ChartDetailsRecyclerViewAdapter()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -24,6 +27,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
         initBarChart()
         dummyChartListData()
         drawBarChart(listData)
+        drawDailyChartDetails()
 
         drawPieChart()
         drawLineChart()
@@ -200,7 +204,25 @@ class ChartFragment : Fragment(R.layout.fragment_chart){
         }
 
         return listLineData
+    }
 
+    private fun drawDailyChartDetails(){
+        rv_daily_chart_details.adapter=dailyChartDetailsAdapter
+        dailyChartDetailsAdapter.data=dummyDailyChartRvData()
+        rv_daily_chart_details.layoutManager=GridLayoutManager(context,2)
+        dailyChartDetailsAdapter.notifyDataSetChanged()
+
+    }
+    private fun dummyDailyChartRvData():ArrayList<RvSoundChart>{
+        val listRVData = ArrayList<RvSoundChart>()
+        listRVData.add(RvSoundChart("motor","00000",0))
+        listRVData.add(RvSoundChart("broken_glass","00000",3))
+        listRVData.add(RvSoundChart("siren","00000",5))
+        listRVData.add(RvSoundChart("water","00000",7))
+        listRVData.add(RvSoundChart("baby_crying","00000",8))
+        listRVData.add(RvSoundChart("drop_obj","00000",3))
+
+        return listRVData
     }
 
 }
