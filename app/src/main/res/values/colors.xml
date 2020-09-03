@@ -17,6 +17,14 @@
     <color name="colorChartGray">#818181</color>
     <color name="colorChartMint">#6ee7e5</color>
 
+    <color name="colorWaterBlue">#4399ef</color>
+    <color name="colorDefault">#818181</color>
+    <color name="colorMotorGreen">#31ab3f</color>
+    <color name="colorBabyCryingOrange">#f59651</color>
+    <color name="colorDropObjRed">#fb5951</color>
+    <color name="colorBrokenGlassPurple">#6956f5</color>
+    <color name="colorSirenDeepPurple">#361b32</color>
+
     <color name="colorBackgroundWaterBlue">#1A4399ef</color>
     <color name="colorBackgroundDefault">#1A818181</color>
     <color name="colorBackgroundMotorGreen">#1A31ab3f</color>

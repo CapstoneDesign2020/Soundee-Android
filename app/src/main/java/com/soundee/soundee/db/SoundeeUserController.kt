@@ -4,6 +4,7 @@ package com.soundee.soundee.db
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.util.Log
 import com.soundee.soundee.login.LoginActivity
 
 object SoundeeUserController{
@@ -29,10 +30,11 @@ object SoundeeUserController{
     fun clearToken(ctx:Context){
         soundeeSharedPreferences=ctx.getSharedPreferences(TOKEN,Context.MODE_PRIVATE)
 
-        with(soundeeSharedPreferences.edit()){
-            clear()
-            commit()
-        }
+        val editor=soundeeSharedPreferences.edit()
+            editor.clear()
+            editor.commit()
+
+        Log.e("토큰 지워졌나", getToken(ctx))
 
         val loginIntent = Intent(ctx,LoginActivity::class.java)
         ctx.startActivity(loginIntent)

@@ -8,7 +8,7 @@ data class RvSoundChart(
     val soundClass :String,
 
     @SerializedName("date")
-    val soundDate :String,
+    val soundDate :String?,
     val value:Int
 ){
     companion object{

@@ -32,27 +32,27 @@ object RepositoryImpl : Repository{
     }
 
     override fun getDailyPieChart(
-        body: JsonObject,
+        token: String,
         onSuccess: (DailyPieChartResponse) -> Unit,
         onFail: (errorMsg: String) -> Unit
     ) {
-        soundeeRemoteDataSource.getDailyPieChart(body, onSuccess, onFail)
+        soundeeRemoteDataSource.getDailyPieChart(token, onSuccess, onFail)
     }
 
     override fun getWeeklyBarChart(
-        body: JsonObject,
+        token:String,
         onSuccess: (WeeklyBarChartResponse) -> Unit,
         onFail: (errorMsg: String) -> Unit
     ) {
-        soundeeRemoteDataSource.getWeeklyBarChart(body, onSuccess, onFail)
+        soundeeRemoteDataSource.getWeeklyBarChart(token, onSuccess, onFail)
     }
 
     override fun getMonthlyLineChart(
-        body: JsonObject,
-        onSuccess: (MonthlyLineChartDetails) -> Unit,
+        token:String,
+        onSuccess: (MonthlyLineChartResponse) -> Unit,
         onFail: (errorMsg: String) -> Unit
     ) {
-        soundeeRemoteDataSource.getMonthlyLineChart(body, onSuccess, onFail)
+        soundeeRemoteDataSource.getMonthlyLineChart(token, onSuccess, onFail)
     }
 
 

@@ -2,16 +2,26 @@ package com.soundee.soundee.home
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.soundee.soundee.R
+import com.soundee.soundee.db.SoundeeUserController
+import com.soundee.soundee.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        Log.e("dd", SoundeeUserController.getToken(context))
+        if(SoundeeUserController.getToken(context)==null){
+            val intent = Intent(context,LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         btn_home_no.setOnClickListener {
             selectedAnswerButton(btn_home_no)

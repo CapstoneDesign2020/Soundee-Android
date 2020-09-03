@@ -22,27 +22,27 @@ interface RequestNetworkInterface{
     //회원 탈퇴
     @DELETE("/user/withdraw/{userIdx}")
     fun deleteUser(
-        @Header("token") token : String,
+        @Header("accessToken") token : String,
         @Path("userIdx") userIdx: Int
     ):Call<DeleteUserResponse>
 
     //일일 파이 차트
     @GET("/chart/daily")
     fun getDailyPieChart(
-        @Header("token") token : String
+        @Header("accessToken") token : String
     ):Call<DailyPieChartResponse>
 
     //주간 바 차트
     @GET("/chart/weekly")
     fun getWeeklyBarChart(
-        @Header("token") token:String
+        @Header("accessToken") token:String
     ):Call<WeeklyBarChartResponse>
 
     //월간 바 차트
     @GET("/chart/monthly")
     fun getMonthlyLineChart(
-        @Header("token") token:String
-    ):Call<MonthlyLineChartDetails>
+        @Header("accessToken") token:String
+    ):Call<MonthlyLineChartResponse>
 
 
 }

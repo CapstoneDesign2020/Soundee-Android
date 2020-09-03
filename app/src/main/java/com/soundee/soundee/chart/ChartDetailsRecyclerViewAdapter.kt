@@ -6,18 +6,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.soundee.soundee.R
+import com.soundee.soundee.data.vo.ChartDetails
 import com.soundee.soundee.data.vo.RvSoundChart
 import java.lang.RuntimeException
 
 class ChartDetailsRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var data = ArrayList<RvSoundChart>()
+    var data = ArrayList<ChartDetails>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when (viewType) {
-            RvSoundChart.DEFAULT -> DefaultSoundChartRecyclerViewHolder(parent)
-            else -> throw RuntimeException("알 수 없는 뷰타입 에러")
-        }
-
+        return DefaultSoundChartRecyclerViewHolder(parent)
     }
 
     override fun getItemCount(): Int = data.size
@@ -43,7 +40,7 @@ class DefaultSoundChartRecyclerViewHolder(viewGroup: ViewGroup) : RecyclerView.V
     val soundName = itemView.findViewById<TextView>(R.id.txt_sound)
     val sounNum = itemView.findViewById<TextView>(R.id.txt_sound_num)
 
-    fun bind(data: RvSoundChart) {
+    fun bind(data: ChartDetails) {
         soundName.text = data.soundClass
         sounNum.text = data.value.toString()
 
@@ -69,17 +66,17 @@ class DefaultSoundChartRecyclerViewHolder(viewGroup: ViewGroup) : RecyclerView.V
                         icon.setImageResource(R.drawable.icon_motor)
                         icon.setBackgroundResource(R.drawable.border_motor_green_fill_10)
                     }
-                    "baby_crying" -> {
+                    "baby" -> {
                         bar.setImageResource(R.drawable.img_progressbar_baby_crying)
                         icon.setImageResource(R.drawable.icon_baby_crying)
                         icon.setBackgroundResource(R.drawable.border_baby_crying_orange_fill_10)
                     }
-                    "drop_obj" -> {
+                    "drop" -> {
                         bar.setImageResource(R.drawable.img_progressbar_drop_obj)
                         icon.setImageResource(R.drawable.icon_drop_obj)
                         icon.setBackgroundResource(R.drawable.border_drop_obj_red_fill_10)
                     }
-                    "broken_glass" -> {
+                    "glass" -> {
                         bar.setImageResource(R.drawable.img_progessbar_glass)
                         icon.setImageResource(R.drawable.icon_glass)
                         icon.setBackgroundResource(R.drawable.border_broken_glass_purple_fill_10)

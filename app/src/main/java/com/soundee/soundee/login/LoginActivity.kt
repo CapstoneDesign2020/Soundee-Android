@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
         val textWatcher = CheckTextWatcher({ checkEmailPassword() })
         txt_actionbar_name.text = "로그인"
 
+        if(SoundeeUserController.getToken(this)!=""){
+            val mainIntent = Intent(this,MainActivity::class.java)
+            startActivity(mainIntent)
+        }
+
+
         edt_login_email.setOnFocusChangeListener() { view, b -> haveFocus(view, b) }
         edt_login_password.setOnFocusChangeListener() { view, b -> haveFocus(view, b) }
 

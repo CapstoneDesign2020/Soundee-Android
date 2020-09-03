@@ -1,7 +1,7 @@
 package com.soundee.soundee.data.vo
 
 data class MonthlyLineChartResponse (
-    val status: String,
+    val status: Int,
     val success : Boolean,
     val message: String,
     val data : List<MonthlyLineChartDetails>
