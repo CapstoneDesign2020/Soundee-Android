@@ -6,11 +6,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.marginBottom
 import androidx.fragment.app.Fragment
 import com.soundee.soundee.R
 import com.soundee.soundee.db.SoundeeUserController
 import com.soundee.soundee.login.LoginActivity
+import com.soundee.soundee.util.doWorkPeriodic5
 import com.soundee.soundee.util.setAlarm
 import com.soundee.soundee.util.setChannel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -18,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        doWorkPeriodic5()
 
         Log.e("dd", SoundeeUserController.getToken(context))
         if(SoundeeUserController.getToken(context)==null){
@@ -51,10 +56,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun createDialog(view : TextView) {
         val builder = AlertDialog.Builder(context)
-        builder.setMessage("피드백 감사합니다")
-            .setNeutralButton("확인") {dialog,which->
-               unselectedAnswerButton(view)
-            }
+
+        builder.setView(R.layout.dialog_feedback)
+
+
         val alertDialog = builder.create()
         alertDialog.show()
 
