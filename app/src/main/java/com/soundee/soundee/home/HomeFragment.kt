@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import com.soundee.soundee.R
 import com.soundee.soundee.db.SoundeeUserController
 import com.soundee.soundee.login.LoginActivity
+import com.soundee.soundee.util.setAlarm
+import com.soundee.soundee.util.setChannel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -26,6 +28,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         btn_home_no.setOnClickListener {
             selectedAnswerButton(btn_home_no)
             unselectedAnswerButton(btn_home_yes)
+            setAlarm(context!!)
             createDialog(btn_home_no)
         }
         btn_home_yes.setOnClickListener {

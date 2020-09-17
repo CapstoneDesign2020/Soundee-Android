@@ -1,6 +1,7 @@
 package com.soundee.soundee.setting
 
 import android.content.Context.VIBRATOR_SERVICE
+import android.content.Intent
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import com.soundee.soundee.R
 import com.soundee.soundee.data.remote.RemoteDataSource
 import com.soundee.soundee.db.SoundeeUserController
+import com.soundee.soundee.login.LoginActivity
 import kotlinx.android.synthetic.main.fragment_setting.*
 
 
@@ -34,6 +36,11 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 a = true
             }
             vibrate(1)
+        }
+        btn_setting_logout.setOnClickListener {
+            SoundeeUserController.clearToken(context!!)
+            //val intent = Intent(context,LoginActivity::class.java)
+            //startActivity(intent)
         }
         btn_setting_delete_account.setOnClickListener {
             deleteWithdrawUser()
