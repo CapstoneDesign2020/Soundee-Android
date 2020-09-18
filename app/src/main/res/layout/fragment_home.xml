@@ -17,11 +17,11 @@
         app:srcCompat="@drawable/img_main_wheel" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_home_soundee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
-        android:text="아기 울음소리가 들려요!"
+        android:text="@string/soundee_default"
         android:textColor="@color/colorPointGreen"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="@+id/img_home_wheel"
@@ -29,29 +29,29 @@
         app:layout_constraintTop_toBottomOf="@+id/img_home_wheel" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txt_home_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="아기의 상태를 확인해주세요."
         android:textColor="@color/colorPointGreen"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/txt_home_soundee"
+        app:layout_constraintStart_toStartOf="@+id/txt_home_soundee"
+        app:layout_constraintTop_toBottomOf="@+id/txt_home_soundee" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txt_home_feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:gravity="center"
-        android:text="@string/home_baby_crying"
+        android:text="@string/feedback_baby_crying"
         android:textColor="@color/colorPointGreen"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_home_action" />
 
     <TextView
         android:id="@+id/btn_home_yes"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_home_now_using"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_home_feedback" />
 
     <TextView
         android:id="@+id/btn_home_now_using"
@@ -81,7 +81,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/btn_home_no"
         app:layout_constraintStart_toEndOf="@+id/btn_home_yes"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_home_feedback" />
 
 
     <TextView
@@ -95,6 +95,6 @@
         android:text="아니에요!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_home_now_using"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_home_feedback" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

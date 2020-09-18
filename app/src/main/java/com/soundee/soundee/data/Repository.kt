@@ -31,23 +31,30 @@ interface Repository{
 
     //일일 파이 차트
     fun getDailyPieChart(
-        body: JsonObject,
+        token:String,
         onSuccess: (DailyPieChartResponse) -> Unit,
         onFail: (errorMsg: String) -> Unit
     )
 
     //주간 바 차트
     fun getWeeklyBarChart(
-        body: JsonObject,
+        token:String,
         onSuccess: (WeeklyBarChartResponse) -> Unit,
         onFail: (errorMsg: String) -> Unit
     )
 
     //월간 라인 차트
     fun getMonthlyLineChart(
-        body: JsonObject,
-        onSuccess: (MonthlyLineChartDetails) -> Unit,
+        token:String,
+        onSuccess: (MonthlyLineChartResponse) -> Unit,
         onFail: (errorMsg: String) -> Unit
+    )
+
+    //현재 들리는 소리 정보 요청
+    fun getPresentSound(
+        token: String,
+        onSuccess: (PresentSoundResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
     )
 
 }

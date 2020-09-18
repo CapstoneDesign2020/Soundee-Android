@@ -6,6 +6,6 @@ data class ChartDetails(
     @SerializedName("class")
     val soundClass: String,
     @SerializedName("date")
-    val soundDate:String,
+    val soundDate:String?,
     val value : Int
 )

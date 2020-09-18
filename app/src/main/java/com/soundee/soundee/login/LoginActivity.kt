@@ -31,6 +31,12 @@ class LoginActivity : AppCompatActivity() {
         val textWatcher = CheckTextWatcher({ checkEmailPassword() })
         txt_actionbar_name.text = "로그인"
 
+        if(SoundeeUserController.getToken(this)!=""){
+            val mainIntent = Intent(this,MainActivity::class.java)
+            startActivity(mainIntent)
+        }
+
+
         edt_login_email.setOnFocusChangeListener() { view, b -> haveFocus(view, b) }
         edt_login_password.setOnFocusChangeListener() { view, b -> haveFocus(view, b) }
 
@@ -89,6 +95,7 @@ class LoginActivity : AppCompatActivity() {
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
         RepositoryImpl.postSignIn(gsonObject,{
+            Log.e("로그인 비밀번호 잘못 입력",it.toString())
             if(it.status==200){
                 if(it.success){
                     Log.e("요청 값",gsonObject.toString())

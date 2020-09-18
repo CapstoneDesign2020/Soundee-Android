@@ -7,5 +7,28 @@
     -->
     <string name="hello_world">Hello Square World!</string>
 
-    <string name="home_baby_crying">아기가 우는 게 맞다면 "맞아요", 아니라면 \n "아니에요!" 버튼을 눌러주세요.</string>
+    <string name="soundee_default">소리를 듣는 중입니다!</string>
+    <string name="soundee_baby_crying">아기 울음소리가 들려요!</string>
+    <string name="soundee_siren">사이렌 소리가 들려요!</string>
+    <string name="soundee_motor">모터 소리가 들려요!</string>
+    <string name="soundee_water">물 소리가 들려요!</string>
+    <string name="soundee_drop">물건이 떨어지는 소리가 들려요!</string>
+    <string name="soundee_glass">유리가 깨진 소리가 들려요!</string>
+
+    <string name="action_baby_crying">아기 울음소리가 들려요!</string>
+    <string name="action_siren">사이렌 소리가 들려요!</string>
+    <string name="action_motor">모터 소리가 들려요!</string>
+    <string name="action_water">물 소리가 들려요!</string>
+    <string name="action_drop">물건이 떨어지는 소리가 들려요!</string>
+    <string name="action_glass">유리가 깨진 소리가 들려요!</string>
+
+
+    <string name="feedback_baby_crying">아기가 우는 게 맞다면 "맞아요", 아니라면 \n "아니에요!" 버튼을 눌러주세요.</string>
+    <string name="feedback_siren">사이렌 소리가 들려요!</string>
+    <string name="feedback_motor">모터 소리가 들려요!</string>
+    <string name="feedback_water">물 소리가 들려요!</string>
+    <string name="feedback_drop">물건이 떨어지는 소리가 들려요!</string>
+    <string name="feedback_glass">유리가 깨진 소리가 들려요!</string>
+
+
 </resources>
