@@ -50,4 +50,11 @@ interface Repository{
         onFail: (errorMsg: String) -> Unit
     )
 
+    //현재 들리는 소리 정보 요청
+    fun getPresentSound(
+        token: String,
+        onSuccess: (PresentSoundResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
+    )
+
 }

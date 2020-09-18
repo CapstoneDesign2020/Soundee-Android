@@ -95,6 +95,7 @@ class LoginActivity : AppCompatActivity() {
         val gsonObject = JsonParser().parse(jsonObject.toString()) as JsonObject
 
         RepositoryImpl.postSignIn(gsonObject,{
+            Log.e("로그인 비밀번호 잘못 입력",it.toString())
             if(it.status==200){
                 if(it.success){
                     Log.e("요청 값",gsonObject.toString())

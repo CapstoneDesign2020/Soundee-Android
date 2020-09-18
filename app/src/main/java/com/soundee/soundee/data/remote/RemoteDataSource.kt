@@ -1,5 +1,6 @@
 package com.soundee.soundee.data.remote
 
+import android.util.Log
 import com.google.gson.JsonObject
 import com.soundee.soundee.data.Repository
 import com.soundee.soundee.data.vo.*
@@ -65,9 +66,17 @@ object RemoteDataSource : Repository {
                     call: Call<SignInResponse>,
                     response: Response<SignInResponse>
                 ) {
+
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
-                        false -> onFail(response.errorBody().toString())
+                        false -> {
+                            if(response.code()==400){
+                                Log.e("로그인 실패 400",response.errorBody()?.string())
+                            }
+                            onFail(response.errorBody().toString())
+                            val s = response.body().toString()
+                            Log.e("로그인 실패",s)
+                        }
                     }
                 }
             })
@@ -166,6 +175,31 @@ object RemoteDataSource : Repository {
                     }
                 }
 
+            })
+    }
+
+    override fun getPresentSound(
+        token: String,
+        onSuccess: (PresentSoundResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
+    ) {
+        soundeeApiService.getPresentSound(token)
+            .enqueue(object :Callback<PresentSoundResponse>{
+                override fun onFailure(call: Call<PresentSoundResponse>, t: Throwable) {
+                    onFail( t.toString())
+                }
+
+                override fun onResponse(
+                    call: Call<PresentSoundResponse>,
+                    response: Response<PresentSoundResponse>
+                ) {
+
+                    response.body()?.let { onSuccess(it) }
+                    when (response.isSuccessful) {
+                        true -> response.body()?.let { onSuccess(it) }
+                        false -> onFail(response.errorBody()?.string())
+                    }
+                }
             })
     }
 

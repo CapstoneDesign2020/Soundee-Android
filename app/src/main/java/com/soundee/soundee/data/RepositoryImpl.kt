@@ -55,5 +55,13 @@ object RepositoryImpl : Repository{
         soundeeRemoteDataSource.getMonthlyLineChart(token, onSuccess, onFail)
     }
 
+    override fun getPresentSound(
+        token: String,
+        onSuccess: (PresentSoundResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
+    ) {
+        soundeeRemoteDataSource.getPresentSound(token,onSuccess, onFail)
+    }
+
 
 }

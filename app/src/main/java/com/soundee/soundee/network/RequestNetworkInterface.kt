@@ -44,5 +44,10 @@ interface RequestNetworkInterface{
         @Header("accessToken") token:String
     ):Call<MonthlyLineChartResponse>
 
+    @GET("/sound")
+    fun getPresentSound(
+        @Header("accessToken") token:String
+    ):Call<PresentSoundResponse>
+
 
 }
