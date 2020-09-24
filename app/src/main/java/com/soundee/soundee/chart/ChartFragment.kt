@@ -35,10 +35,10 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         getMonthlyLineChartData()
 
 
-        initBarChart()
-        dummyChartListData()
-        drawBarChart(listData)
         drawDailyChartDetails()
+
+        initBarChart()
+        drawBarChart(listData)
         drawLineChart(listLineData)
 
     }
@@ -130,7 +130,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         rightYAxis.isEnabled = false
 
         val leftYAxis = chart_bar_weekly.axisLeft
-        leftYAxis.axisMaximum = 120f
+        leftYAxis.axisMaximum = 20f
         leftYAxis.axisMinimum = 0f
         leftYAxis.setDrawGridLines(false) // false 해줘야 뒤에 모눈종이 같은게 없어져요
         leftYAxis.setDrawAxisLine(false)
@@ -144,9 +144,9 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         //val paint = roundedBarChartRenderer.paintRender
 
         chart_bar_weekly.renderer = roundedBarChartRenderer
-
         chart_bar_weekly.legend.isEnabled = false
         chart_bar_weekly.description.isEnabled = false
+
 
     }
 
@@ -160,12 +160,16 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         listData.add(BarEntry(5f, 40f))
         listData.add(BarEntry(6f, 55f))
     }
+
     private fun getWeeklyBarChartData(){
         if(SoundeeUserController.getToken(context)!=""){
             RepositoryImpl.getWeeklyBarChart(SoundeeUserController.getToken(context)!!,{
                 if(it.status==200){
+                    Log.e("주간데이터",it.toString())
                     val weeklyBarData = it.data
+                    Log.e("주간데이터 그래프 정보",weeklyBarData.toString())
                     for( i in weeklyBarData){
+                        Log.e("주간데이터 개별 그래프 ",i.toString())
                         when(i.day){
                             "sun"->{
                                 listData.add(BarEntry(0f,i.soundSum.toFloat()))
@@ -191,6 +195,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
 
                         }
                     }
+                    drawBarChart(listData)
                 }
             },{})
         }
@@ -268,15 +273,20 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         rightYAxis.isEnabled = false
 
         val leftYAxis = chart_line_monthly.axisLeft
-        leftYAxis.axisMaximum = 100f
+        leftYAxis.axisMaximum = 20f
         leftYAxis.axisMinimum = 0f
         leftYAxis.setDrawGridLines(false) // false 해줘야 뒤에 모눈종이 같은게 없어져요
         leftYAxis.setDrawAxisLine(false)
         leftYAxis.setDrawLabels(false)
 
+        val marker= MonthlyMarkerView(context)
+        chart_line_monthly.marker=marker
+
+
         chart_line_monthly.legend.isEnabled = false
         chart_line_monthly.description.isEnabled = false
         chart_line_monthly.data = LineData(lineDataSet)
+
     }
 
     private fun getMonthlyLineChartData(): ArrayList<Entry>{
@@ -297,6 +307,5 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
 
         return listLineData
     }
-
 
 }
