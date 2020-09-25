@@ -13,13 +13,12 @@ import kotlinx.android.synthetic.main.markerview_monthly.view.*
 
 
 
-class MonthlyMarkerView(context: Context?, layoutResource:Int= R.layout.markerview_monthly) : MarkerView(context, layoutResource) {
+class MonthlyChartMarker(context: Context?, layoutResource:Int= R.layout.markerview_monthly) : MarkerView(context, layoutResource) {
 
     var month=0
     val monthlyChartDetailsAdapter = ChartDetailsRecyclerViewAdapter()
     val monthlyLineData =ArrayList<MonthlyLineChartDetails>()
 
-    val monthDetailsSound=ArrayList<ChartDetails>()
 
     //entry를 content의 텍스트에 지정
     override fun refreshContent(e: Entry?, highlight: Highlight?) {
@@ -38,6 +37,7 @@ class MonthlyMarkerView(context: Context?, layoutResource:Int= R.layout.markervi
         return x?:0
     }
     fun notifyDataMonthlyChartDetails(month:Int){
+        val monthDetailsSound=ArrayList<ChartDetails>()
         Log.e("먼슬리데이터",monthlyLineData.toString())
         monthDetailsSound.addAll(0,monthlyLineData[month].details)
         monthlyChartDetailsAdapter.data = monthDetailsSound
