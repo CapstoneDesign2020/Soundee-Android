@@ -1,4 +1,4 @@
-package com.soundee.soundee.util
+package com.soundee.soundee.chart
 
 import android.graphics.Canvas
 import android.graphics.LinearGradient
@@ -48,7 +48,7 @@ class RoundedBarChartRenderer(
                 Math.ceil((dataSet.entryCount.toFloat() * phaseX).toDouble()).toInt(),
                 dataSet.entryCount
             )
-            while (i < count) {
+            while (i <=  count) {
 
                 val e = dataSet.getEntryForIndex(i)
 
@@ -152,5 +152,6 @@ class RoundedBarChartRenderer(
             }
             j += 4
         }
+
     }
 }

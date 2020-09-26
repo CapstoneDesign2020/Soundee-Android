@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.soundee.soundee.home.CurrentSoundViewModel"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
-        android:text="@string/soundee_default"
+        android:text="@{String.valueOf(viewModel.title)}"
         android:textColor="@color/colorPointGreen"
         android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="@+id/img_home_wheel"
@@ -33,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="아기의 상태를 확인해주세요."
+        android:text="@={viewModel.action}"
         android:textColor="@color/colorPointGreen"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/txt_home_soundee"
@@ -46,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:gravity="center"
-        android:text="@string/feedback_baby_crying"
+        android:text="@{viewModel.feedback}"
         android:textColor="@color/colorPointGreen"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,3 +103,4 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_home_feedback" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
