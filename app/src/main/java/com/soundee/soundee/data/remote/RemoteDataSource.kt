@@ -186,7 +186,7 @@ object RemoteDataSource : Repository {
         soundeeApiService.getPresentSound(token)
             .enqueue(object :Callback<PresentSoundResponse>{
                 override fun onFailure(call: Call<PresentSoundResponse>, t: Throwable) {
-                    onFail( t.toString())
+                    onFail(t.toString())
                 }
 
                 override fun onResponse(

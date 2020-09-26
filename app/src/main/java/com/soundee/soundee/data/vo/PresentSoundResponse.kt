@@ -5,9 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class PresentSoundResponse(
     val status:Int,
     val success:Boolean,
-    val message:String
-   // val data : PresentSoundDetails?
+    val message:String,
+    val data : List<PresentSoundDetails>
 )
+
 data class PresentSoundDetails(
     val soundIdx : Int,
     @SerializedName("class")

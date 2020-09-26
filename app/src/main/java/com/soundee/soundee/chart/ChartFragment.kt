@@ -17,8 +17,10 @@ import com.soundee.soundee.data.vo.ChartDetails
 import com.soundee.soundee.data.vo.MonthlyLineChartDetails
 import com.soundee.soundee.data.vo.WeeklyBarChartDetails
 import com.soundee.soundee.db.SoundeeUserController
-import com.soundee.soundee.util.RoundedBarChartRenderer
 import kotlinx.android.synthetic.main.fragment_chart.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChartFragment : Fragment(R.layout.fragment_chart) {
     private val listData = ArrayList<BarEntry>()
@@ -38,10 +40,11 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         getDailyPieChartListData()
         getWeeklyBarChartData()
         getMonthlyLineChartData()
-
+        setTime()
 
         drawDailyChartDetails()
         drawWeeklyChartDetails()
@@ -51,6 +54,14 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         //drawBarChart(listData)
         drawLineChart(listLineData)
 
+    }
+    private fun setTime(){
+
+        val dateFormat= SimpleDateFormat("aa HH:mm", Locale.KOREAN)
+        var time = dateFormat.format(System.currentTimeMillis())
+        txt_chart_daily_time.text=time
+        txt_chart_weekly_time.text=time
+        txt_chart_monthly_time.text=time
     }
 
     private fun getDailyPieChartListData() {
@@ -190,11 +201,12 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         leftYAxis.setDrawAxisLine(false)
         leftYAxis.setDrawLabels(false)
 
-        val roundedBarChartRenderer = RoundedBarChartRenderer(
-            chart_bar_weekly,
-            chart_bar_weekly.animator,
-            chart_bar_weekly.viewPortHandler
-        )
+        val roundedBarChartRenderer =
+            RoundedBarChartRenderer(
+                chart_bar_weekly,
+                chart_bar_weekly.animator,
+                chart_bar_weekly.viewPortHandler
+            )
 
         chart_bar_weekly.renderer = roundedBarChartRenderer
         chart_bar_weekly.legend.isEnabled = false

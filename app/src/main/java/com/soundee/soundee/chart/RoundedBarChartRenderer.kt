@@ -1,4 +1,4 @@
-package com.soundee.soundee.util
+package com.soundee.soundee.chart
 
 import android.graphics.Canvas
 import android.graphics.LinearGradient

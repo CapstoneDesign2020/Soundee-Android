@@ -70,7 +70,7 @@
                     app:srcCompat="@drawable/btn_folded_details" />
 
                 <TextView
-                    android:id="@+id/txt_chart_datily_time"
+                    android:id="@+id/txt_chart_daily_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="오후 8:16"
@@ -238,7 +238,7 @@
                     app:srcCompat="@drawable/btn_folded_details" />
 
                 <TextView
-                    android:id="@+id/txt_chart_monthly_details"
+                    android:id="@+id/txt_chart_monthly_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="오후 8:16"
