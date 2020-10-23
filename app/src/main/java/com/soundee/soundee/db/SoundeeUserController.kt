@@ -11,6 +11,8 @@ object SoundeeUserController{
 
     private const val TOKEN = "token"
     private const val USERIDX = "useridx"
+    private const val USERNAME = "name"
+    private const val  USEREMAIL= "email"
     private lateinit var soundeeSharedPreferences: SharedPreferences
 
 
@@ -24,7 +26,7 @@ object SoundeeUserController{
 
     fun getToken(ctx:Context?):String?{
         soundeeSharedPreferences= ctx!!.getSharedPreferences(TOKEN,Context.MODE_PRIVATE)
-        return soundeeSharedPreferences.getString(TOKEN,"" )
+        return soundeeSharedPreferences.getString(TOKEN,"")
     }
 
     fun clearToken(ctx:Context){
@@ -52,6 +54,32 @@ object SoundeeUserController{
     fun getUserIdx(ctx:Context?):Int{
         soundeeSharedPreferences= ctx!!.getSharedPreferences(USERIDX,Context.MODE_PRIVATE)
         return soundeeSharedPreferences.getInt(USERIDX,0 )
+    }
+
+    fun setName(ctx: Context, userName:String){
+        soundeeSharedPreferences=ctx.getSharedPreferences(USERNAME,Context.MODE_PRIVATE)
+        with(soundeeSharedPreferences.edit()){
+            putString(USERNAME,userName)
+            commit()
+        }
+    }
+
+    fun getName(ctx:Context?):String?{
+        soundeeSharedPreferences= ctx!!.getSharedPreferences(USERNAME,Context.MODE_PRIVATE)
+        return soundeeSharedPreferences.getString(USERNAME,"" )
+    }
+
+    fun setEmail(ctx: Context, userEmail:String){
+        soundeeSharedPreferences=ctx.getSharedPreferences(USEREMAIL,Context.MODE_PRIVATE)
+        with(soundeeSharedPreferences.edit()){
+            putString(USEREMAIL,userEmail)
+            commit()
+        }
+    }
+
+    fun getEmail(ctx:Context?):String?{
+        soundeeSharedPreferences= ctx!!.getSharedPreferences(USEREMAIL,Context.MODE_PRIVATE)
+        return soundeeSharedPreferences.getString(USEREMAIL,"" )
     }
 
 }

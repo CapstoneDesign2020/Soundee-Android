@@ -7,5 +7,8 @@ data class SignInResponse(
     val data : Token
 )
 data class Token(
-    val accessToken:String
+    val accessToken:String,
+    val userIdx:Int,
+    val email:String,
+    val name:String
 )
