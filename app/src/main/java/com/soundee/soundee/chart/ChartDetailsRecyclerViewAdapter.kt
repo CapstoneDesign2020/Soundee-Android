@@ -7,8 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.soundee.soundee.R
 import com.soundee.soundee.data.vo.ChartDetails
-import com.soundee.soundee.data.vo.RvSoundChart
-import java.lang.RuntimeException
 
 class ChartDetailsRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var data = ArrayList<ChartDetails>()
@@ -41,13 +39,13 @@ class DefaultSoundChartRecyclerViewHolder(viewGroup: ViewGroup) : RecyclerView.V
     val sounNum = itemView.findViewById<TextView>(R.id.txt_sound_num)
 
     fun bind(data: ChartDetails) {
-        soundName.text = data.soundClass
-        sounNum.text = data.value.toString()
 
+        sounNum.text = data.value.toString()+"회"
         drawBarColor(data.value, data.soundClass)
     }
 
-    fun drawBarColor(soundNum: Int, soundName: String) {
+
+    fun drawBarColor(soundNum: Int, name: String) {
         when (soundNum) {
             0 -> {
                 bar.setImageResource(R.drawable.img_progressbar_default)
@@ -55,36 +53,35 @@ class DefaultSoundChartRecyclerViewHolder(viewGroup: ViewGroup) : RecyclerView.V
                 icon.setBackgroundResource(R.drawable.border_gray_fill_10)
             }
             else -> {
-                when (soundName) {
+                when (name) {
                     "water" -> {
+                        soundName.text = "물 떨어지는 소리"
                         bar.setImageResource(R.drawable.img_progressbar_water)
                         icon.setImageResource(R.drawable.icon_water)
                         icon.setBackgroundResource(R.drawable.border_water_blue_fill_10)
                     }
                     "motor" -> {
+                        soundName.text = "모터 소리"
                         bar.setImageResource(R.drawable.img_progressbar_motor)
                         icon.setImageResource(R.drawable.icon_motor)
                         icon.setBackgroundResource(R.drawable.border_motor_green_fill_10)
                     }
                     "baby" -> {
+                        soundName.text = "아기 울음 소리"
                         bar.setImageResource(R.drawable.img_progressbar_baby_crying)
                         icon.setImageResource(R.drawable.icon_baby_crying)
                         icon.setBackgroundResource(R.drawable.border_baby_crying_orange_fill_10)
                     }
-                    "drop" -> {
-                        bar.setImageResource(R.drawable.img_progressbar_drop_obj)
-                        icon.setImageResource(R.drawable.icon_drop_obj)
-                        icon.setBackgroundResource(R.drawable.border_drop_obj_red_fill_10)
-                    }
-                    "glass" -> {
-                        bar.setImageResource(R.drawable.img_progessbar_glass)
-                        icon.setImageResource(R.drawable.icon_glass)
-                        icon.setBackgroundResource(R.drawable.border_broken_glass_purple_fill_10)
-                    }
                     "siren" -> {
+                        soundName.text = "사이렌 소리"
                         bar.setImageResource(R.drawable.img_progressbar_siren)
                         icon.setImageResource(R.drawable.icon_siren)
-                        icon.setBackgroundResource(R.drawable.border_siren_deep_purple_fill_10)
+                        icon.setBackgroundResource(R.drawable.border_siren_red_fill_10)
+                    }
+                    else->{
+                        bar.setImageResource(R.drawable.img_progressbar_default)
+                        icon.setImageResource(R.drawable.icon_default)
+                        icon.setBackgroundResource(R.drawable.border_gray_fill_10)
                     }
                 }
             }

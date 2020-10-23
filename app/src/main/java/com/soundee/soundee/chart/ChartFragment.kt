@@ -2,6 +2,7 @@ package com.soundee.soundee.chart
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,12 +30,15 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
     private val dailyChartDetailsAdapter = ChartDetailsRecyclerViewAdapter()
     lateinit var monthlyLineData: List<MonthlyLineChartDetails>
     lateinit var monthlyMarker: MonthlyChartMarker
-    //lateinit var weeklyMarker: WeeklyChartMarker
 
-    var day = 0
-    var lastday: Float = 0f
+    var clickDay = 0
+    var lastDay: Float = 0f
     val weeklyChartDetailsAdapter = ChartDetailsRecyclerViewAdapter()
     val weeklyBarData = ArrayList<WeeklyBarChartDetails>()
+
+    var isDailyDetailsFolded=true
+    var isWeeklyDetailsFolded=true
+    var isMonthlyDetailsFolded=true
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -53,6 +57,24 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         initBarChart()
         //drawBarChart(listData)
         drawLineChart(listLineData)
+
+        btn_chart_daily_details.setOnClickListener {
+            isFoldedRvDailyDetails()
+        }
+
+        btn_chart_weekly_details.setOnClickListener {
+            isFoldRvWeeklyDetails()
+        }
+        
+        btn_chart_monthly_details.setOnClickListener {
+           isFoldedRvMonthlyDetails()
+        }
+        chart_line_monthly.setOnClickListener {
+            btn_chart_monthly_details.isSelected = true
+            rv_monthly_chart_details.visibility = View.VISIBLE
+            isMonthlyDetailsFolded = false
+        }
+
 
     }
     private fun setTime(){
@@ -81,9 +103,10 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                         i.let {
                             if (it.value > 0) {
                                 listRVData.add(it)
-                                listPieData.add(PieEntry(it.value.toFloat() * 10, it.soundClass))
+                                //listPieData.add(PieEntry(it.value.toFloat() * 10, it.soundClass))
                                 when (it.soundClass) {
                                     "water" -> {
+                                        listPieData.add(PieEntry(it.value.toFloat() * 10, "물 떨어지는 소리"))
                                         listPieColor.add(
                                             ContextCompat.getColor(
                                                 context!!,
@@ -92,6 +115,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                                         )
                                     }
                                     "motor" -> {
+                                        listPieData.add(PieEntry(it.value.toFloat() * 10, "모터 소리"))
                                         listPieColor.add(
                                             ContextCompat.getColor(
                                                 context!!,
@@ -100,6 +124,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                                         )
                                     }
                                     "baby" -> {
+                                        listPieData.add(PieEntry(it.value.toFloat() * 10, "아기 울음 소리"))
                                         listPieColor.add(
                                             ContextCompat.getColor(
                                                 context!!,
@@ -107,27 +132,12 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                                             )
                                         )
                                     }
-                                    "drop" -> {
-                                        listPieColor.add(
-                                            ContextCompat.getColor(
-                                                context!!,
-                                                R.color.colorDropObjRed
-                                            )
-                                        )
-                                    }
-                                    "glass" -> {
-                                        listPieColor.add(
-                                            ContextCompat.getColor(
-                                                context!!,
-                                                R.color.colorBrokenGlassPurple
-                                            )
-                                        )
-                                    }
                                     "siren" -> {
+                                        listPieData.add(PieEntry(it.value.toFloat() * 10, "사이렌 소리"))
                                         listPieColor.add(
                                             ContextCompat.getColor(
                                                 context!!,
-                                                R.color.colorSirenDeepPurple
+                                                R.color.colorSirenRed
                                             )
                                         )
                                     }
@@ -213,17 +223,6 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         chart_bar_weekly.isDoubleTapToZoomEnabled = false
         chart_bar_weekly.description.isEnabled = false
 
-        fun notifyDataWeeklyChartDetails(day: Int) {
-            Log.e("위클리데이터", weeklyBarData.toString())
-            val weeklyDetailsSound = ArrayList<ChartDetails>()
-            weeklyDetailsSound.addAll(0, weeklyBarData[day].details)
-            Log.e("위클리데이터 세부", weeklyDetailsSound.toString())
-            weeklyChartDetailsAdapter.data = weeklyDetailsSound
-            Log.e("위클리데이터 리싸이클러뷰", weeklyChartDetailsAdapter.data.toString())
-            weeklyChartDetailsAdapter.notifyDataSetChanged()
-
-            Log.e("위클리데이터 리싸이클러뷰", weeklyChartDetailsAdapter.itemCount.toString())
-        }
 
 
         chart_bar_weekly.setOnChartValueSelectedListener(object :
@@ -233,14 +232,29 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
             }
 
             override fun onValueSelected(e: Entry?, h: Highlight?) {
-                val entry = e?.x?.toInt() ?: 0
-                day = entry
-                notifyDataWeeklyChartDetails(day)
+                clickDay = e?.x?.toInt() ?: lastDay.toInt()
+                notifyDataWeeklyChartDetails(clickDay)
+
+                isWeeklyDetailsFolded=false
+                btn_chart_weekly_details.isSelected = true
+                rv_weekly_chart_details.visibility = View.VISIBLE
 
             }
         })
 
     }
+    private fun notifyDataWeeklyChartDetails(day: Int) {
+        Log.e("위클리데이터", weeklyBarData.toString())
+        val weeklyDetailsSound = ArrayList<ChartDetails>()
+        weeklyDetailsSound.addAll(0, weeklyBarData[day].details)
+        Log.e("위클리데이터 세부", weeklyDetailsSound.toString())
+        weeklyChartDetailsAdapter.data = weeklyDetailsSound
+        Log.e("위클리데이터 리싸이클러뷰", weeklyChartDetailsAdapter.data.toString())
+        weeklyChartDetailsAdapter.notifyDataSetChanged()
+
+        Log.e("위클리데이터 리싸이클러뷰", weeklyChartDetailsAdapter.itemCount.toString())
+    }
+
 
     private fun getWeeklyBarChartData() {
         if (SoundeeUserController.getToken(context) != "") {
@@ -257,27 +271,27 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                                 listData.add(BarEntry(0f, i.soundSum.toFloat()))
                             }
                             "mon" -> {
-                                lastday = 1f
+                                lastDay = 1f
                                 listData.add(BarEntry(1f, i.soundSum.toFloat()))
                             }
                             "tue" -> {
-                                lastday = 2f
+                                lastDay = 2f
                                 listData.add(BarEntry(2f, i.soundSum.toFloat()))
                             }
                             "wed" -> {
-                                lastday = 3f
+                                lastDay = 3f
                                 listData.add(BarEntry(3f, i.soundSum.toFloat()))
                             }
                             "thu" -> {
-                                lastday = 4f
+                                lastDay = 4f
                                 listData.add(BarEntry(4f, i.soundSum.toFloat()))
                             }
                             "fri" -> {
-                                lastday = 5f
+                                lastDay = 5f
                                 listData.add(BarEntry(5f, i.soundSum.toFloat()))
                             }
                             "sat" -> {
-                                lastday = 6f
+                                lastDay = 6f
                                 listData.add(BarEntry(6f, i.soundSum.toFloat()))
                             }
                         }
@@ -294,18 +308,16 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
     private fun drawBarChart(listData: ArrayList<BarEntry>) {
 
         Log.e("리스트 데이터", listData.size.toString())
-        while (lastday < 6f) {
-            lastday++
-            listData.add(BarEntry(lastday, 0f))
+        while (lastDay < 6f) {
+            lastDay++
+            listData.add(BarEntry(lastDay, 0f))
             val nullWeeklySound = WeeklyBarChartDetails(
                 "", "",
                 listOf(
                     ChartDetails(soundClass = "water", soundDate = null, value = 0),
                     ChartDetails(soundClass = "motor", soundDate = null, value = 0),
-                    ChartDetails(soundClass = "drop", soundDate = null, value = 0),
                     ChartDetails(soundClass = "baby", soundDate = null, value = 0),
-                    ChartDetails(soundClass = "siren", soundDate = null, value = 0),
-                    ChartDetails(soundClass = "glass", soundDate = null, value = 0)
+                    ChartDetails(soundClass = "siren", soundDate = null, value = 0)
                 )
             )
             weeklyBarData.add(nullWeeklySound)
@@ -343,7 +355,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         pieLegend.verticalAlignment = Legend.LegendVerticalAlignment.CENTER
         pieLegend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
         pieLegend.orientation = Legend.LegendOrientation.VERTICAL
-        pieLegend.maxSizePercent = 0.2f
+        pieLegend.maxSizePercent=0.25f
 
 
         chart_pie_daily.setDrawSliceText(false)
@@ -414,6 +426,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                         lastMonth++
                         // listLineData.add(Entry(lastMonth.toFloat())
                     }
+                    monthlyMarker.month=lastMonth
                     Log.e("line data", listLineData.toString())
                     drawLineChart(listLineData)
                     monthlyMarker.monthlyLineData.addAll(monthlyLineData)
@@ -425,6 +438,44 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         return listLineData
     }
 
+     fun isFoldedRvMonthlyDetails(){
+            if (isMonthlyDetailsFolded) {
+                btn_chart_monthly_details.isSelected = true
+                rv_monthly_chart_details.visibility = View.VISIBLE
+                isMonthlyDetailsFolded = false
+
+            } else {
+                btn_chart_monthly_details.isSelected = false
+                rv_monthly_chart_details.visibility = View.GONE
+                isMonthlyDetailsFolded= true
+            }
+    }
+    fun isFoldRvWeeklyDetails(){
+        if (isWeeklyDetailsFolded) {
+            btn_chart_weekly_details.isSelected = true
+            notifyDataWeeklyChartDetails(clickDay)
+            rv_weekly_chart_details.visibility = View.VISIBLE
+            isWeeklyDetailsFolded = false
+        } else {
+            btn_chart_weekly_details.isSelected = false
+            rv_weekly_chart_details.visibility = View.GONE
+            isWeeklyDetailsFolded= true
+        }
+    }
+    fun isFoldedRvDailyDetails(){
+        if (isDailyDetailsFolded) {
+            btn_chart_daily_details.isSelected = true
+            rv_daily_chart_details.visibility = View.VISIBLE
+            isDailyDetailsFolded = false
+        } else {
+            btn_chart_daily_details.isSelected = false
+            rv_daily_chart_details.visibility = View.GONE
+            isDailyDetailsFolded= true
+        }
+    }
+
+
 
 }
+
 

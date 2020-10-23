@@ -18,14 +18,15 @@ import kotlinx.android.synthetic.main.fragment_setting.*
 
 
 class SettingFragment : Fragment(R.layout.fragment_setting) {
-    var a = false
+    var a = true
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        txt_setting_user_name.text=SoundeeUserController.getName(context)
+        txt_setting_user_email.text=SoundeeUserController.getName(context)
 
         btn_setting_fold_account.setOnClickListener {
-
             if (a) {
                 btn_setting_fold_account.isSelected = true
                 layout_setting_unfold_account.visibility = View.VISIBLE
@@ -35,7 +36,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
                 btn_setting_fold_account.isSelected = false
                 a = true
             }
-            vibrate(1)
+            //vibrate(1)
         }
         btn_setting_logout.setOnClickListener {
             SoundeeUserController.clearToken(context!!)

@@ -3,6 +3,7 @@ package com.soundee.soundee.home
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -46,12 +47,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         vm.title.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback(){
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 sender as ObservableField<String>
-                Log.e("옵저버","옵저버 잘들어왔냥:${sender.get()}")
-                Log.e("옵저버","옵저버 잘들어왔냥:${vm.title.get()}")
-                Log.e("옵저버","옵저버 잘들어왔냥:${txt_home_soundee.text}")
-
+//                Log.e("옵저버","옵저버 잘들어왔냥:${sender.get()}")
+//                Log.e("옵저버","옵저버 잘들어왔냥:${vm.title.get()}")
+//                Log.e("옵저버","옵저버 잘들어왔냥:${txt_home_soundee.text}")
             }
         })
+
+        val handler= Handler()
+        val worker=Thread{
+            for(i in 1..20){
+                handler.post {
+                    CurrentSoundViewModel.getPresentSound(context!!)
+                }
+                Thread.sleep(5_000)
+            }
+        }
+        worker.start()
 
 
 
@@ -64,13 +75,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         btn_home_no.setOnClickListener {
             selectedAnswerButton(btn_home_no)
             unselectedAnswerButton(btn_home_yes)
-            setAlarm(context!!)
-            createDialog(btn_home_no)
+            unselectedAnswerButton(btn_home_now_using)
+            //setAlarm(context!!)
+            createDialog()
         }
         btn_home_yes.setOnClickListener {
-            selectedAnswerButton((btn_home_yes))
+            selectedAnswerButton(btn_home_yes)
             unselectedAnswerButton(btn_home_no)
-            createDialog(btn_home_yes)
+            unselectedAnswerButton(btn_home_now_using)
+            createDialog()
+        }
+        btn_home_now_using.setOnClickListener {
+            selectedAnswerButton(btn_home_now_using)
+            unselectedAnswerButton(btn_home_yes)
+            unselectedAnswerButton(btn_home_no)
+            //setAlarm(context!!)
+            createDialog()
+
         }
 
 
@@ -85,7 +106,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         view.setTextColor(resources.getColor(R.color.colorTextBlack))
     }
 
-    private fun createDialog(view : TextView) {
+    private fun createDialog() {
         val builder = AlertDialog.Builder(context)
 
         builder.setView(R.layout.dialog_feedback)

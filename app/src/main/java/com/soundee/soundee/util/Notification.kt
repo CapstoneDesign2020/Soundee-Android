@@ -29,7 +29,7 @@ fun setChannel(ctx: Context) {
 
     }
 }
-fun setAlarm(ctx:Context) {
+fun setAlarm(ctx:Context,contentText:String) {
     setChannel(ctx)
     val pendingIntent = PendingIntent.getActivity(
         ctx,
@@ -43,7 +43,7 @@ fun setAlarm(ctx:Context) {
         .setSmallIcon(R.drawable.icon_glass)
         .setContentTitle(CHANNEL_ID)
         .setLargeIcon(BitmapFactory.decodeResource(ctx.resources,R.drawable.icon_baby_crying))
-        .setContentText("소리가 들려요! 클릭해서 확인해보세요")
+        .setContentText(contentText)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setContentIntent(pendingIntent)
         .setAutoCancel(true)

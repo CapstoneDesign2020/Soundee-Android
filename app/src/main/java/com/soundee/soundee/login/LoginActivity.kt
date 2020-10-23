@@ -103,6 +103,9 @@ class LoginActivity : AppCompatActivity() {
                     Log.e("토큰 값",it.data.accessToken)
 
                     SoundeeUserController.setToken(this,it.data.accessToken)
+                    SoundeeUserController.setUserIdx(this, it.data.userIdx)
+                    SoundeeUserController.setName(this,it.data.name)
+                    SoundeeUserController.setEmail(this,it.data.email)
                     //Log.e("db token",SoundeeUserController.getToken(this))
 
                     val intent = Intent(this,MainActivity::class.java)

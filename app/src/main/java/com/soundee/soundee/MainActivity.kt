@@ -9,16 +9,19 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.soundee.soundee.db.SoundeeUserController
 import com.soundee.soundee.login.LoginActivity
+import com.soundee.soundee.util.doWorkPeriodic5
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.e("dd",SoundeeUserController.getToken(this))
-        if(SoundeeUserController.getToken(this)==null){
-            finish()
-        }
+        //doWorkPeriodic5()
+
+//        Log.e("dd",SoundeeUserController.getToken(this))
+//        if(SoundeeUserController.getToken(this)==null){
+//            finish()
+//        }
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navi)
         val navigationController = Navigation.findNavController(this,R.id.nav_host_fragment)
