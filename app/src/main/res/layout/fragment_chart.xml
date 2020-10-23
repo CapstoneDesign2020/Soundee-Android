@@ -49,34 +49,34 @@
                     android:id="@+id/chart_pie_daily"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="35dp"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_chart_dailly_details" />
+                    app:layout_constraintTop_toBottomOf="@+id/btn_chart_daily_details" />
 
                 <ImageView
-                    android:id="@+id/btn_chart_dailly_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_chart_daily_details"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_folded_details" />
+                    app:srcCompat="@drawable/selector_fold_button" />
 
                 <TextView
                     android:id="@+id/txt_chart_daily_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="오후 8:16"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_chart_dailly_details"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_chart_dailly_details"
-                    app:layout_constraintTop_toTopOf="@+id/btn_chart_dailly_details" />
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_chart_daily_details"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_chart_daily_details"
+                    app:layout_constraintTop_toTopOf="@+id/btn_chart_daily_details" />
 
                 <ImageView
                     android:id="@+id/img_line_daily"
@@ -95,8 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
                     android:layout_marginBottom="20dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,15 +140,15 @@
 
                 <ImageView
                     android:id="@+id/btn_chart_weekly_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_folded_details" />
+                    app:srcCompat="@drawable/selector_fold_button" />
 
                 <TextView
                     android:id="@+id/txt_chart_weekly_time"
@@ -176,7 +176,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
                     android:layout_marginBottom="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -227,15 +226,15 @@
 
                 <ImageView
                     android:id="@+id/btn_chart_monthly_details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_folded_details" />
+                    app:srcCompat="@drawable/selector_fold_button" />
 
                 <TextView
                     android:id="@+id/txt_chart_monthly_time"
@@ -262,7 +261,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
                     android:layout_marginBottom="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

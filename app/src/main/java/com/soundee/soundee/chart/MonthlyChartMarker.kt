@@ -2,6 +2,8 @@ package com.soundee.soundee.chart
 
 import android.content.Context
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
 import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
@@ -23,9 +25,11 @@ class MonthlyChartMarker(context: Context?, layoutResource:Int= R.layout.markerv
     //entry를 content의 텍스트에 지정
     override fun refreshContent(e: Entry?, highlight: Highlight?) {
         val entry= e?.x?.toInt()
+
         month=getMonth(entry)
         notifyDataMonthlyChartDetails(month-1)
         txt_marker_month_num.text=e?.y?.toInt().toString()
+
         super.refreshContent(e, highlight)
     }
 
