@@ -18,19 +18,15 @@
     <color name="colorChartMint">#6ee7e5</color>
     <color name="colorMarkerGreen">#f1fbf4</color>
 
-    <color name="colorWaterBlue">#4399ef</color>
     <color name="colorDefault">#818181</color>
+    <color name="colorWaterBlue">#4399ef</color>
     <color name="colorMotorGreen">#31ab3f</color>
     <color name="colorBabyCryingOrange">#f59651</color>
-    <color name="colorDropObjRed">#fb5951</color>
-    <color name="colorBrokenGlassPurple">#6956f5</color>
-    <color name="colorSirenDeepPurple">#361b32</color>
+    <color name="colorSirenRed">#fb5951</color>
 
-    <color name="colorBackgroundWaterBlue">#1A4399ef</color>
     <color name="colorBackgroundDefault">#1A818181</color>
+    <color name="colorBackgroundWaterBlue">#1A4399ef</color>
     <color name="colorBackgroundMotorGreen">#1A31ab3f</color>
     <color name="colorBackgroundBabyCryingOrange">#1Af59651</color>
-    <color name="colorBackgroundDropObjRed">#1Afb5951</color>
-    <color name="colorBackgroundBrokenGlassPurple">#1A6956f5</color>
-    <color name="colorBackgroundSirenDeepPurple">#1A361b32</color>
+    <color name="colorBackgroundSirenRed">#1Afb5951</color>
 </resources>
