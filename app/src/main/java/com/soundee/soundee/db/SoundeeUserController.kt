@@ -10,7 +10,7 @@ import com.soundee.soundee.login.LoginActivity
 object SoundeeUserController{
 
     private const val TOKEN = "token"
-    private const val USERIDX = "useridx"
+    private const val SOUNDIDX = "useridx"
     private const val USERNAME = "name"
     private const val  USEREMAIL= "email"
     private lateinit var soundeeSharedPreferences: SharedPreferences
@@ -43,17 +43,17 @@ object SoundeeUserController{
 
     }
 
-    fun setUserIdx(ctx: Context, userIdx:Int){
-        soundeeSharedPreferences=ctx.getSharedPreferences(USERIDX,Context.MODE_PRIVATE)
+    fun setSoundIdx(ctx: Context, userIdx:Int){
+        soundeeSharedPreferences=ctx.getSharedPreferences(SOUNDIDX,Context.MODE_PRIVATE)
         with(soundeeSharedPreferences.edit()){
-            putInt(USERIDX,userIdx)
+            putInt(SOUNDIDX,userIdx)
             commit()
         }
     }
 
-    fun getUserIdx(ctx:Context?):Int{
-        soundeeSharedPreferences= ctx!!.getSharedPreferences(USERIDX,Context.MODE_PRIVATE)
-        return soundeeSharedPreferences.getInt(USERIDX,0 )
+    fun getSoundIdx(ctx:Context?):Int{
+        soundeeSharedPreferences= ctx!!.getSharedPreferences(SOUNDIDX,Context.MODE_PRIVATE)
+        return soundeeSharedPreferences.getInt(SOUNDIDX,0 )
     }
 
     fun setName(ctx: Context, userName:String){

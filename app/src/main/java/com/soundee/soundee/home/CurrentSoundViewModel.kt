@@ -16,6 +16,7 @@ object CurrentSoundViewModel {
     var action= ObservableField("")
     var feedback = ObservableField("")
     var using=ObservableField<Boolean>()
+    var button=ObservableField<Boolean>()
     //var right=ObservableField<Boolean>()
 
     fun getPresentSound(ctx: Context) {
@@ -31,19 +32,26 @@ object CurrentSoundViewModel {
                 if(it.status==200){
                     Log.e("실시간 소리 잘 받고 있음",it.toString())
                     Log.e("실시간 소리 잘 받고 있음",it.data[0].className.toString())
+                    SoundeeUserController.setSoundIdx(ctx,it.data[0].soundIdx)
+                    Log.e("소리 삭제",SoundeeUserController.getSoundIdx(ctx).toString())
                     when(it.data[0].className){
                         "water" -> {
                             title.set("물 소리가 들려요!")
-                            action.set("물 소리를 확인해주세요")
+                            action.set("물이 낭비 되고 있지는 않은지 확인해주세요!")
                             feedback.set("물소리가 맞다면 '맞아요!' 버튼을, 아니라면 '아니에요!' 버튼을 눌러주세요")
                             using.set(false)
+                            button.set(true)
                             setAlarm(ctx,"물 소리가 들려요!")
                         }
                         "motor" -> {
                             title.set("모터 소리가 들려요!")
-                            action.set("청소기나 드라이가ㅏ 켜져있는지 확인해주세요.")
-                            feedback.set("켜져 있다면 '맞아요!' 버튼을, 아니라면 '아니에요!' 버튼을, 사용 중이랑면 '사용 중' 버튼을 눌러주세요")
+                            action.set("청소기나 드라이가 \n" +
+                                    "켜져있는지 확인해주세요.")
+                            feedback.set("켜져 있다면 '맞아요!' 버튼을,\n" +
+                                    "아니라면 '아니에요!' 버튼을, \n" +
+                                    "사용 중이랑면 '사용 중' 버튼을 눌러주세요")
                             using.set(true)
+                            button.set(true)
                             setAlarm(ctx,"모터 소리가 들려요!")
                         }
                         "baby" -> {
@@ -51,13 +59,15 @@ object CurrentSoundViewModel {
                             action.set("아기의 상태를 확인해주세요")
                             feedback.set("아기가 우는 게 맞다면 '맞아요!' 버튼을, 아니라면 '아니에요!' 버튼을 눌러주세요")
                             using.set(false)
+                            button.set(true)
                             setAlarm(ctx,"아기 울음 소리가 들려요!")
                         }
                         "siren" -> {
                             title.set("사이렌 소리가 들려요!")
-                            action.set("주변의 상활를 확인해주세요")//여기 고쳐야함.
-                            feedback.set("사이렌이 맞다면 '맞아요!' 버튼을, 아니라면 '아니에요!' 버튼을 눌러주세요")
+                            action.set("위험한 상황일 수 있으니 주위해주세요!")//여기 고쳐야함.
+                            feedback.set("")
                             using.set(false)
+                            button.set(false)
                             setAlarm(ctx,"사이렌 소리가 들려요!")
                         }
                     }
@@ -73,6 +83,7 @@ object CurrentSoundViewModel {
                     action.set("")
                     feedback.set("")
                     using.set(false)
+                    button.set(false)
 
                 }
             }

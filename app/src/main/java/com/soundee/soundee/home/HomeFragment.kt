@@ -13,6 +13,7 @@ import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import com.soundee.soundee.R
+import com.soundee.soundee.data.remote.RemoteDataSource
 import com.soundee.soundee.databinding.FragmentHomeBinding
 import com.soundee.soundee.db.SoundeeUserController
 import com.soundee.soundee.login.LoginActivity
@@ -55,12 +56,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val handler= Handler()
         val worker=Thread{
-            for(i in 1..20){
+            for(i in 1..1000){
                 handler.post {
-                    CurrentSoundViewModel.getPresentSound(context!!)
+                   CurrentSoundViewModel.getPresentSound(context!!)
                 }
                 Thread.sleep(5_000)
             }
+
         }
         worker.start()
 
@@ -76,7 +78,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             selectedAnswerButton(btn_home_no)
             unselectedAnswerButton(btn_home_yes)
             unselectedAnswerButton(btn_home_now_using)
-            //setAlarm(context!!)
+
+            deletePresentSound()
             createDialog()
         }
         btn_home_yes.setOnClickListener {
@@ -89,7 +92,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             selectedAnswerButton(btn_home_now_using)
             unselectedAnswerButton(btn_home_yes)
             unselectedAnswerButton(btn_home_no)
-            //setAlarm(context!!)
+
+            deletePresentSound()
             createDialog()
 
         }
@@ -111,9 +115,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         builder.setView(R.layout.dialog_feedback)
 
-
         val alertDialog = builder.create()
         alertDialog.show()
+
+    }
+
+    fun deletePresentSound(){
+        RemoteDataSource.deletePresentSound(SoundeeUserController.getToken(context)!!,SoundeeUserController.getSoundIdx(context)!!,{
+            Log.e("소리 삭제 정보 요청",it.toString())
+        },{})
 
     }
 
