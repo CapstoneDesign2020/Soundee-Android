@@ -26,7 +26,7 @@ object RemoteDataSource : Repository {
     override fun postSignUp(
         body: JsonObject,
         onSuccess: (SignUpResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeApiService
             .postSignUp(body)
@@ -42,7 +42,7 @@ object RemoteDataSource : Repository {
                     // 로그인 페이지로 이동
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
-                        false -> onFail(response.errorBody().toString())
+                        false -> onFail(response.errorBody()?.string())
                     }
                 }
 
@@ -53,7 +53,7 @@ object RemoteDataSource : Repository {
     override fun postSignIn(
         body: JsonObject,
         onSuccess: (SignInResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeApiService
             .postSignIn(body)
@@ -73,9 +73,8 @@ object RemoteDataSource : Repository {
                             if(response.code()==400){
                                 Log.e("로그인 실패 400",response.errorBody()?.string())
                             }
-                            onFail(response.errorBody().toString())
-                            val s = response.body().toString()
-                            Log.e("로그인 실패",s)
+                            onFail(response.errorBody()?.string())
+
                         }
                     }
                 }
@@ -85,23 +84,22 @@ object RemoteDataSource : Repository {
     //회원 탈퇴
     override fun deleteUser(
         token: String,
-        userIdx: Int,
-        onSuccess: (DeleteUserResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onSuccess: (DefaultResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
     ) {
-        soundeeApiService.deleteUser(token, userIdx)
-            .enqueue(object : Callback<DeleteUserResponse> {
-                override fun onFailure(call: Call<DeleteUserResponse>, t: Throwable) {
+        soundeeApiService.deleteUser(token)
+            .enqueue(object : Callback<DefaultResponse> {
+                override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
                     onFail(t.toString())
                 }
 
                 override fun onResponse(
-                    call: Call<DeleteUserResponse>,
-                    response: Response<DeleteUserResponse>
+                    call: Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
                 ) {
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
-                        false -> onFail(response.errorBody().toString())
+                        false -> onFail(response.errorBody()?.string())
                     }
                 }
             })
@@ -110,7 +108,7 @@ object RemoteDataSource : Repository {
     override fun getDailyPieChart(
         token: String,
         onSuccess: (DailyPieChartResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeApiService.getDailyPieChart(token)
             .enqueue(object : Callback<DailyPieChartResponse> {
@@ -124,7 +122,7 @@ object RemoteDataSource : Repository {
                 ) {
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
-                        false -> onFail(response.errorBody().toString())
+                        false -> onFail(response.errorBody()?.string())
                     }
                 }
             })
@@ -133,7 +131,7 @@ object RemoteDataSource : Repository {
     override fun getWeeklyBarChart(
         token: String,
         onSuccess: (WeeklyBarChartResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeApiService.getWeeklyBarChart(token)
             .enqueue(object : Callback<WeeklyBarChartResponse>{
@@ -147,7 +145,7 @@ object RemoteDataSource : Repository {
                 ) {
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
-                        false -> onFail(response.errorBody().toString())
+                        false -> onFail(response.errorBody()?.string())
                     }
                 }
 
@@ -157,7 +155,7 @@ object RemoteDataSource : Repository {
     override fun getMonthlyLineChart(
         token: String,
         onSuccess: (MonthlyLineChartResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeApiService.getMonthlyLineChart(token)
             .enqueue(object :Callback<MonthlyLineChartResponse>{
@@ -171,7 +169,7 @@ object RemoteDataSource : Repository {
                 ) {
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
-                        false -> onFail(response.errorBody().toString())
+                        false -> onFail(response.errorBody()?.string())
                     }
                 }
 
@@ -195,6 +193,30 @@ object RemoteDataSource : Repository {
                 ) {
 
                     response.body()?.let { onSuccess(it) }
+                    when (response.isSuccessful) {
+                        true -> response.body()?.let { onSuccess(it) }
+                        false -> onFail(response.errorBody()?.string())
+                    }
+                }
+            })
+    }
+
+    override fun deletePresentSound(
+        token: String,
+        soundIdx: Int,
+        onSuccess: (DefaultResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
+    ) {
+        soundeeApiService.deletePresentSound(token, soundIdx)
+            .enqueue(object : Callback<DefaultResponse> {
+                override fun onFailure(call: Call<DefaultResponse>, t: Throwable) {
+                    onFail(t.toString())
+                }
+
+                override fun onResponse(
+                    call: Call<DefaultResponse>,
+                    response: Response<DefaultResponse>
+                ) {
                     when (response.isSuccessful) {
                         true -> response.body()?.let { onSuccess(it) }
                         false -> onFail(response.errorBody()?.string())

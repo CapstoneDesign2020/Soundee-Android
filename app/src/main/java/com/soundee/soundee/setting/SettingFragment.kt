@@ -24,7 +24,7 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
         super.onActivityCreated(savedInstanceState)
 
         txt_setting_user_name.text=SoundeeUserController.getName(context)
-        txt_setting_user_email.text=SoundeeUserController.getName(context)
+        txt_setting_user_email.text=SoundeeUserController.getEmail(context)
 
         btn_setting_fold_account.setOnClickListener {
             if (a) {
@@ -66,7 +66,6 @@ class SettingFragment : Fragment(R.layout.fragment_setting) {
 
     private fun deleteWithdrawUser() {
         RemoteDataSource.deleteUser(SoundeeUserController.getToken(context)!!,
-            SoundeeUserController.getUserIdx(context),
             {
                 SoundeeUserController.clearToken(context!!)
                 Toast.makeText(context, it.message, Toast.LENGTH_LONG)

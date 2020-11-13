@@ -15,7 +15,7 @@
         android:id="@+id/img_home_wheel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/txt_home_soundee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="35dp"
         android:text="@{String.valueOf(viewModel.title)}"
         android:textColor="@color/colorPointGreen"
         android:textSize="32dp"
@@ -37,7 +37,7 @@
         android:id="@+id/txt_home_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:text="@={viewModel.action}"
         android:textColor="@color/colorPointGreen"
         android:textSize="20dp"
@@ -47,19 +47,21 @@
 
     <TextView
         android:id="@+id/txt_home_feedback"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:gravity="center"
         android:text="@{viewModel.feedback}"
         android:textColor="@color/colorPointGreen"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_home_action" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_home_action"
+        tools:text="아기가 우는 게 맞다면 '맞아요!' 버튼을, 아니라면 '아니에요!' 버튼을 눌러주세요&quot;)" />
 
     <TextView
         android:id="@+id/btn_home_yes"
+        visibility="@{viewModel.button}"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginTop="36dp"
@@ -68,6 +70,7 @@
         android:clickable="true"
         android:gravity="center"
         android:text="맞아요!"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_home_now_using"
         app:layout_constraintEnd_toStartOf="@+id/btn_home_now_using"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +78,7 @@
 
     <TextView
         android:id="@+id/btn_home_now_using"
+        visibility="@{viewModel.using}"
         android:layout_width="114dp"
         android:layout_height="36dp"
         android:layout_marginStart="10dp"
@@ -83,7 +87,6 @@
         android:background="@drawable/border_green_line_35"
         android:gravity="center"
         android:text="사용중!"
-        visibility="@{viewModel.using}"
         app:layout_constraintEnd_toStartOf="@+id/btn_home_no"
         app:layout_constraintStart_toEndOf="@+id/btn_home_yes"
         app:layout_constraintTop_toBottomOf="@+id/txt_home_feedback" />
@@ -91,6 +94,7 @@
 
     <TextView
         android:id="@+id/btn_home_no"
+        visibility="@{viewModel.button}"
         android:layout_width="114dp"
         android:layout_height="36dp"
         android:layout_marginStart="15dp"
@@ -98,6 +102,7 @@
         android:background="@drawable/border_green_line_35"
         android:gravity="center"
         android:text="아니에요!"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_home_now_using"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_home_now_using"
         app:layout_constraintTop_toBottomOf="@+id/txt_home_feedback" />

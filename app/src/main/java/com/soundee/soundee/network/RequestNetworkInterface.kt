@@ -20,11 +20,10 @@ interface RequestNetworkInterface{
     ): Call<SignInResponse>
 
     //회원 탈퇴
-    @DELETE("/user/withdraw/{userIdx}")
+    @DELETE("/user/withdraw")
     fun deleteUser(
-        @Header("accessToken") token : String,
-        @Path("userIdx") userIdx: Int
-    ):Call<DeleteUserResponse>
+        @Header("accessToken") token : String
+    ):Call<DefaultResponse>
 
     //일일 파이 차트
     @GET("/chart/daily")
@@ -48,6 +47,13 @@ interface RequestNetworkInterface{
     fun getPresentSound(
         @Header("accessToken") token:String
     ):Call<PresentSoundResponse>
+
+    //소리 정보 삭제 요청
+    @DELETE("/sound/{soundIdx}")
+    fun deletePresentSound(
+        @Header("accessToken") token:String,
+        @Path("soundIdx")soundIdx:Int
+    ):Call<DefaultResponse>
 
 
 }

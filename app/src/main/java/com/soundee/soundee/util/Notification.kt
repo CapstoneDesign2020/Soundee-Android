@@ -40,9 +40,9 @@ fun setAlarm(ctx:Context,contentText:String) {
 
 
     val builder = NotificationCompat.Builder(ctx, CHANNEL_ID)
-        .setSmallIcon(R.drawable.icon_glass)
+        .setSmallIcon(R.drawable.icon_water)
         .setContentTitle(CHANNEL_ID)
-        .setLargeIcon(BitmapFactory.decodeResource(ctx.resources,R.drawable.icon_baby_crying))
+        .setLargeIcon(BitmapFactory.decodeResource(ctx.resources,R.drawable.icon_water))
         .setContentText(contentText)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setContentIntent(pendingIntent)

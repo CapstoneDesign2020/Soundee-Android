@@ -9,7 +9,7 @@ object RepositoryImpl : Repository{
     override fun postSignUp(
         body: JsonObject,
         onSuccess: (SignUpResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeRemoteDataSource.postSignUp(body,onSuccess,onFail)
     }
@@ -17,24 +17,23 @@ object RepositoryImpl : Repository{
     override fun postSignIn(
         body: JsonObject,
         onSuccess: (SignInResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeRemoteDataSource.postSignIn(body, onSuccess, onFail)
     }
 
     override fun deleteUser(
         token: String,
-        userIdx: Int,
-        onSuccess: (DeleteUserResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onSuccess: (DefaultResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
     ) {
-        soundeeRemoteDataSource.deleteUser(token, userIdx, onSuccess, onFail)
+        soundeeRemoteDataSource.deleteUser(token,  onSuccess, onFail)
     }
 
     override fun getDailyPieChart(
         token: String,
         onSuccess: (DailyPieChartResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeRemoteDataSource.getDailyPieChart(token, onSuccess, onFail)
     }
@@ -42,7 +41,7 @@ object RepositoryImpl : Repository{
     override fun getWeeklyBarChart(
         token:String,
         onSuccess: (WeeklyBarChartResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeRemoteDataSource.getWeeklyBarChart(token, onSuccess, onFail)
     }
@@ -50,7 +49,7 @@ object RepositoryImpl : Repository{
     override fun getMonthlyLineChart(
         token:String,
         onSuccess: (MonthlyLineChartResponse) -> Unit,
-        onFail: (errorMsg: String) -> Unit
+        onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeRemoteDataSource.getMonthlyLineChart(token, onSuccess, onFail)
     }
@@ -61,6 +60,15 @@ object RepositoryImpl : Repository{
         onFail: (errorMsg: String?) -> Unit
     ) {
         soundeeRemoteDataSource.getPresentSound(token,onSuccess, onFail)
+    }
+
+    override fun deletePresentSound(
+        token: String,
+        soundIdx: Int,
+        onSuccess: (DefaultResponse) -> Unit,
+        onFail: (errorMsg: String?) -> Unit
+    ) {
+        soundeeRemoteDataSource.deletePresentSound(token,soundIdx, onSuccess, onFail)
     }
 
 

@@ -48,10 +48,10 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/border_gray_line_4"
             android:ems="10"
+            android:hint="email@emaiil.com"
             android:inputType="textEmailSubject"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="email@emaiil.com"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_login_email" />
@@ -76,10 +76,10 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/border_gray_line_4"
             android:ems="10"
+            android:hint="password"
             android:inputType="textPassword|textWebPassword"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/edt_login_email"
             app:layout_constraintTop_toBottomOf="@+id/txt_login_password" />
@@ -140,6 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         app:srcCompat="@drawable/abc_vector_test" />
